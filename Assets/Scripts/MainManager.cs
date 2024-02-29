@@ -18,7 +18,7 @@ public class MainManager : MonoBehaviour
     
     private bool m_GameOver = false;
 
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -66,6 +66,12 @@ public class MainManager : MonoBehaviour
     {
         m_Points += point;
         ScoreText.text = $"Score : {m_Points}";
+        if (m_Points > GameManager.Instance.Score)
+        {
+            GameManager.Instance.Score = m_Points;
+            GameManager.Instance.Name = GameManager.Instance.CurrentName;
+            GameManager.Instance.SaveData();
+        }
     }
 
     public void GameOver()
